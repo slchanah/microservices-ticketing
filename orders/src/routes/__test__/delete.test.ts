@@ -27,7 +27,7 @@ it('marks an order as cancelled', async () => {
     .delete(`/api/orders/${order.id}`)
     .set('Cookie', user)
     .send()
-    .expect(204);
+    .expect(200);
 
   const updatedOrder = await Order.findById(order.id);
 
@@ -54,7 +54,7 @@ it('emits a order deleted event', async () => {
     .delete(`/api/orders/${order.id}`)
     .set('Cookie', user)
     .send()
-    .expect(204);
+    .expect(200);
 
   expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
